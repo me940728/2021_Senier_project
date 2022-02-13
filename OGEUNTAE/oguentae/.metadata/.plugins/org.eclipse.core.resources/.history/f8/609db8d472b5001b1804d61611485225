@@ -1,0 +1,11 @@
+package poly.service;
+
+import java.io.IOException;
+import java.util.List;
+
+import poly.dto.EmpAttDTO;
+
+public interface IAttAnalysService {
+
+
+}

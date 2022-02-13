@@ -1,0 +1,24 @@
+package poly.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class timeToMsecond {
+	
+	public static int timeToMilSecond(String checkTime) {
+		Date today = new Date();
+		SimpleDateFormat date = new SimpleDateFormat("hhmm");
+		
+		
+		
+		String[] resStr = checkTime.split("\\:", 2);
+		int hour = Integer.parseInt(resStr[0]);
+		int min = Integer.parseInt(resStr[1]);
+		int ms = (((hour * 60 * 60) + (min * 60)) * 1000);
+		
+		System.out.println("ms : " + ms);
+		
+		return ms;
+	}
+
+}

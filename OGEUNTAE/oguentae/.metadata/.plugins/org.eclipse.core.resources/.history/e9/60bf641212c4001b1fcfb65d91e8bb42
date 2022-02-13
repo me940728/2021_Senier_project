@@ -1,0 +1,19 @@
+package poly.persistance.mongo.impl;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import poly.dto.AttMonthAnaDTO;
+import poly.persistance.mongo.IEmpAttMonthAnaMapper;
+
+public class EmpAttMonthAnaMapper implements IEmpAttMonthAnaMapper{
+	private Logger log = Logger.getLogger(getClass());
+	// 년도 별 지각자 수 분석
+	@Override
+	public List<AttMonthAnaDTO> getAttMonthAna(String colNm) throws Exception {
+		log.info();
+		return null;
+	}
+
+}

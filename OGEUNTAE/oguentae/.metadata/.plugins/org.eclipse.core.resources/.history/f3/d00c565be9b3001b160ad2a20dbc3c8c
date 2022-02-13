@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IEmpAttMapper">
+	<!-- 최종 목적지 마지막 호출 -->
+		<!-- 사원 번호 가져오는 쿼리 -->
+	<select id="getEmpno" parameterType="EmpAttDTO"
+		resultType="EmpAttDTO">
+		 SELECT 
+		 EMPNO 
+		 FROM 
+		 EMP
+	</select>
+	
+	<insert id = "insertEmpAttTime" parameterType="EmpAttDTO"
+	resultType="EmpAttDTO">
+	</insert>>
+
+</mapper>
+
+

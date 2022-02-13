@@ -1,0 +1,13 @@
+package poly.persistance.mapper;
+
+import java.util.List;
+
+import config.Mapper;
+import poly.dto.EmpAttDTO;
+
+@Mapper("EmpAttMapper")
+public interface IEmpAttMapper {
+
+	List<EmpAttDTO> getEmpno();
+
+}

@@ -1,0 +1,13 @@
+package poly.dto;
+
+
+public class EmpAttDTO {
+	
+	private String empno; // 직원번호
+	private String ename; // 직원이름
+	private String bday; // 생년월일
+	private String sex; // 성별
+
+	
+}
+

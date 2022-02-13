@@ -1,0 +1,19 @@
+INDEX VERSION 1.131
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\398239920.index
+\ogentae\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\576277772.index
+\SpringForOracle\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3921766123.index
+\SpringForOracle\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1461051583.index
+\ogentae\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1080020741.index
+\SpringForOracle\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2246703281.index
+\ogentae\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2153843104.index
+\SpringForOracle\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3903796674.index
+\SpringForOracle\src
+C:\JAVAPROJECTWORKSPACE\oguentae\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1954338414.index
+\SpringForOracle\src

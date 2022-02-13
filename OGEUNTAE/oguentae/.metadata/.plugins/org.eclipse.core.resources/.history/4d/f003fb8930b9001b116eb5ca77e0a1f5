@@ -1,0 +1,116 @@
+package poly.service.impl;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.stereotype.Service;
+
+import poly.dto.EmpAttDTO;
+import poly.persistance.mapper.IEmpAttMapper;
+import poly.service.IEmpAttService;
+import poly.util.DateUtill;
+import poly.util.JsonParsProc;
+import poly.util.UrlUtil;
+
+@Service("EmpAttService")
+public class EmpAttService implements IEmpAttService {
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "EmpAttMapper")
+	IEmpAttMapper empAttMapper;
+
+	// 핵심 비즈니스 로직
+	@SuppressWarnings("null")
+	@Override
+	public int empAttProc(String addres) throws IOException, Exception {
+		log.info("empAttCheck Start!!!!");
+		log.info("addres : " + addres);
+		
+		String res = "";
+		String empno = "";
+		String[] empTime = null;
+		String[] pEmpTime = null;
+		String str ="";
+		String insertDate = DateUtill.getDateTime("yyyyMMddhhmmss");
+		int num = 0;
+		// API 서버에 보내기 위한 매서드 호출
+		UrlUtil uu = new UrlUtil();
+		// 직원 정보 한번에 가져오기
+		List<EmpAttDTO> pList = empAttMapper.getEmpno();
+		List<String> jsonList = null;
+		EmpAttDTO pDTO = null;
+		
+		log.info("::" + pList);
+		log.info("Today DATE : " + insertDate);
+
+		// 파이선 서버로 보내기 위해 문자열로 합침
+		for (EmpAttDTO e : pList) {
+			empno += e.getEmpno() + ",";
+		}
+
+		log.info("String empno :: " + empno);
+		// 합쳐진 문자열을 주소와 함께 붙혀서 보내기
+		res = uu.urlReadforString(addres + empno);
+		log.info("res : " + res);
+		// 객체 초기화
+		pList = null;
+		uu = null;
+		// 서버로부터 데이터를 JSON형식으로 받음
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(res);
+		log.info("json :: " + json);
+		// 유효성 검사 만약 null 값이 들어오면 객체를 올려서 프로그램 동작 계속 시킴
+		if (json == null) {
+			log.info("json is null ");
+			json = new JSONObject();
+		} else {
+			num = 1;
+			// JSON key값(empno)에 담긴 내용을 문자열로 변환해서 받음
+			String time = json.get("empno").toString();
+			log.info("json : " + time);
+			// json 가공을 위해 내가 만든 메서드를 호출하여 리턴 받음
+			empTime = JsonParsProc.JsonParsSplit(time);
+			
+			log.info("::::" + empTime[0]);
+			
+			// empno:time 형식이 담긴 배열의 크기 만큼 반복문을 돌려줌
+			pDTO = new EmpAttDTO();
+			for(int i = 0; i < empTime.length; i++) {
+				// :을 기준으로 2개 배열로 나눠 임시 저장시킴 왜냐면 시간도 : 로 구분되기 때문에
+				pEmpTime = empTime[i].split("\\:", 2);
+				pDTO.setEmpno(pEmpTime[0]); // 홀수는 항상  empno
+				pDTO.setAtt_date(pEmpTime[1]); // 짝수는 항상 time이 담김
+				pDTO.setReg_dt(insertDate);
+				// 디비 인서트 실행 객체를 실어서 생성해줘야 작업이 실행됨 
+				// DTO에 단순히 값을 넣어서는 실행 안댐
+				int check = empAttMapper.insertEmpAttTime(pDTO);
+				if(check == 0) {
+					pDTO = new EmpAttDTO();
+				}else {
+					log.info("success!!");
+				}
+			}
+			
+			pDTO= null;
+		
+		}
+
+		log.info("img Check Process end!!");
+
+		return num;
+	}
+
+	@Override
+	public List<EmpAttDTO> getEmpno() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

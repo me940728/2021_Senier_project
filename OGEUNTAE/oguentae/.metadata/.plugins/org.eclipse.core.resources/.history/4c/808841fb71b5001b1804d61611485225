@@ -1,0 +1,30 @@
+package poly.service.impl;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.stereotype.Service;
+
+import poly.dto.EmpAttDTO;
+import poly.persistance.mapper.IEmpAttMapper;
+import poly.service.IAttAnalysService;
+import poly.service.IEmpAttService;
+import poly.util.JsonParsProc;
+import poly.util.UrlUtil;
+
+@Service("EmpAttService")
+public class AttAnalysService implements IAttAnalysService {
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "EmpAttMapper")
+	IEmpAttMapper empAttMapper;
+	}
+
+}

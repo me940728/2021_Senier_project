@@ -1,0 +1,7 @@
+package poly.persistance.mongo;
+
+public interface IEmpAttMonthAnaMapper {
+	// 년도 별 월 지각자수 분석 
+	public 
+
+}

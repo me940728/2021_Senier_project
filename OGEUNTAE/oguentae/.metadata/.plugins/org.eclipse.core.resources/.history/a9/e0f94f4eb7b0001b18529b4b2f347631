@@ -1,0 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+   <%
+    String apiURL = (String)request.getAttribute("apiURL");
+   	String empCheck = (String)request.getAttribute("empCheck");
+   	String empNo = (String)request.getAttribute("empNo");
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ServerRedirect</title>
+</head>
+<body>
+<script type="text/javascript">
+location.href="<%=apiURL%>&empCheck=<%=empCheck%>&empNo=<%=empNo%>";
+</script>
+</body>
+</html>

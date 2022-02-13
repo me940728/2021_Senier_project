@@ -1,0 +1,102 @@
+package poly.service.impl;
+
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.stereotype.Service;
+
+import poly.dto.EmpAttDTO;
+import poly.persistance.mapper.IEmpAttMapper;
+import poly.service.IEmpAttService;
+import poly.util.JsonParsProc;
+import poly.util.UrlUtil;
+
+@Service("EmpAttService")
+public class EmpAttService implements IEmpAttService {
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "EmpAttMapper")
+	IEmpAttMapper empAttMapper;
+
+	// 핵심 비즈니스 로직
+	@Override
+	public int empAttProc(String addres) throws IOException, Exception {
+		log.info("empAttCheck Start!!!!");
+		log.info("addres : " + addres);
+		
+		String res = "";
+		String empno = "";
+		int num = 0;
+		// API 서버에 보내기 위한 매서드 호출
+		UrlUtil uu = new UrlUtil();
+		// 직원 정보 한번에 가져오기
+		List<EmpAttDTO> pList = empAttMapper.getEmpno();
+		List<String> rList = null;
+		Iterator<String> it = null;
+		
+		log.info("::" + pList);
+
+		// 문자열 배열에 담음
+		for (EmpAttDTO e : pList) {
+			empno += e.getEmpno() + ",";
+		}
+
+		log.info("String empno :: " + empno);
+
+		res = uu.urlReadforString(addres + empno);
+		log.info("res : " + res);
+		
+		pList = null;
+		uu = null;
+
+		JSONParser parser = new JSONParser();
+		JSONObject json = (JSONObject) parser.parse(res);
+		
+		log.info("json :: " + json);
+		if (json == null) {
+			log.info("json is null ");
+			json = new JSONObject();
+		} else {
+			num = 1;
+			String time = json.get("empno").toString();
+
+			log.info("json : " + time);
+			// json 가공을 위해 내가 만든 메서드 사용
+			rList = JsonParsProc.JsonParsSplit(time);
+			// 리턴 받은 값으로 데이터베이스에 insert 하기
+			it = rList.iterator();
+			while(it.hasNext()) {
+				String str = it.next();
+				log.info("List " + str);
+			}
+			it = null;
+		
+		}
+		/*
+		 * List<String> rList = (List<String>) json.get("2020110029"); if(rList == null)
+		 * { rList = new ArrayList<String>(); }
+		 * 
+		 * Iterator<String> it = rList.iterator(); while(it.hasNext()) {
+		 * log.info("2222222"); String empAtt = (String) it.next(); log.info("empno : "
+		 * + empAtt); }
+		 */
+
+		log.info("img Check Process end!!");
+
+		return num;
+	}
+
+	@Override
+	public List<EmpAttDTO> getEmpno() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IEmpMapper">
+	<!-- 최종 목적지 마지막 호출 -->
+	
+	<!-- 이메일 매개로 회원가입 중복 체크 -->
+	<select id="getEmployExists" parameterType="EmpDTO"
+		resultType="EmpDTO">
+		SELECT 
+			IF(COUNT(1), 'Y','N') AS EXISTS_YN
+		FROM 
+			EMP
+		WHERE
+			EMPNO=#{empno};
+	</select>
+	
+	<!-- 유저 정보 등록 -->
+	<insert id="insertEmpInfo" parameterType="EmpDTO">
+		INSERT INTO 
+			EMP(
+				EMPNO,
+				ENAME,
+				BDAY,
+				SEX,
+				EEMAIL,
+				PRO_IMAGE,
+				IN_ADMIN,
+				ATT_DATE,
+				UP_ADMIN,
+				ADDRS
+				)
+			VALUES(
+				#{empno},
+				#{ename},
+				#{bday},
+				#{sex},
+				#{eemail},
+				#{proImage},
+				#{inAdmin},
+				NOW(),
+				"CHOIADMIN",
+				#{addrs}
+			)
+	</insert>
+
+	<!-- 유저 정보 가져오기 마지막 호출 -->
+	<select id="getEmpList" parameterType="EmpDTO"
+		resultType="EmpDTO">
+		SELECT 
+			EMPNO,
+			ENAME,
+			SEX,
+			EEMAIL,
+			ATT_DATE
+		FROM
+			ogentae.EMP
+		ORDER BY
+			EMPNO ASC
+	</select>
+
+	<!-- 유저 정보 상세 보기 -->
+	<select id="getEmpDetail" parameterType="EmpDTO"
+		resultType="EmpDTO">
+		SELECT
+			EMPNO,
+			ENAME,
+			ADDRS,
+			BDAY,
+			SEX,
+			EEMAIL,
+			PRO_IMAGE
+		FROM
+			ogentae.EMP
+		WHERE
+			EMPNO =#{empno}
+	</select>
+
+	<update id="updateEmpInfo" parameterType="EmpDTO">
+		UPDATE EMP
+			SET
+				EMPNO=#{empno},
+				ENAME=#{ename},
+				BDAY=#{bday},
+				SEX=#{sex},
+				EEMAIL=#{eemail},
+				UP_ADMIN=#{upAdmin},
+				ADDRS=#{addrs}		
+			WHERE
+				EMPNO=#{empno}
+	</update>
+
+	<delete id="deleteEmpInfo" parameterType="EmpDTO">
+		DELETE 
+			FROM EMP
+			WHERE
+		EMPNO=#{empno}
+	</delete> 
+</mapper>
+
+

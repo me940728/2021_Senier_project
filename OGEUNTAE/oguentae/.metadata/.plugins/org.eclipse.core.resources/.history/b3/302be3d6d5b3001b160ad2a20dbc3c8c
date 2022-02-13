@@ -1,0 +1,19 @@
+package poly.util;
+
+import org.apache.log4j.Logger;
+
+public class TestDum {
+
+	public static void main(String[] args) {
+		Private Losgger log = new Logger()
+		/*// CSV 생성 테스트용
+		 * CsvCreate cs = new CsvCreate(); cs.createCsv();
+		 */
+		String res = "{'2020110029': '2021_05_13_17:33:37','2020110030': '2021_05_14_17:33:37'}";
+		
+		res = res.replaceAll("\\{", "");
+		
+		
+	}
+
+}

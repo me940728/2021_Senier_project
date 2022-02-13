@@ -1,0 +1,26 @@
+package poly.persistance.mongo.impl;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+
+import poly.dto.AttMonthAnaDTO;
+import poly.persistance.mongo.IEmpAttMonthAnaMapper;
+
+public class EmpAttMonthAnaMapper implements IEmpAttMonthAnaMapper{
+	private Logger log = Logger.getLogger(getClass());
+	
+	@Autowired
+	private MongoTemplate mongodb;
+	
+	// 년도 별 지각자 수 분석
+	@Override
+	public List<AttMonthAnaDTO> getAttMonthAna(String colNm) throws Exception {
+		log.info(this.getClass().getName() + "분석 시작!!!");
+		DBCollection rCol = mongodb.get
+		return null;
+	}
+
+}

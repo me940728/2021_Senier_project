@@ -1,0 +1,6 @@
+package poly.persistance.mongo;
+
+public interface IEmpAttMongoMapper {
+	List<EmpAttDTO> insertEmpATTforMongo() throws Exception;
+
+}

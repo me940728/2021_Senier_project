@@ -1,0 +1,14 @@
+package poly.util;
+
+import java.util.List;
+
+import org.json.simple.JSONObject;
+
+public class jsonUtil {
+	
+	public static String jsonMake(ArrayList<> rList) {
+	JSONObject jsonObject = new JSONObject();
+	
+	return "";
+	}
+}

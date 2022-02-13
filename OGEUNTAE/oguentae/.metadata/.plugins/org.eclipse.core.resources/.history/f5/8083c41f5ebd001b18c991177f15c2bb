@@ -1,0 +1,30 @@
+package poly.util;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import poly.dto.EmpAttDTO;
+
+public class TestDum {
+	Logger log = Logger.getLogger(this.getClass());
+
+
+	public static void main(String[] args) {
+		List<EmpAttDTO> pList = new ArrayList<>();
+		EmpAttDTO pDTO = new EmpAttDTO();
+		
+		pDTO.setAtt_date("1");
+		pDTO.setAttno("2");
+		pDTO.setEmpno("3");
+		pDTO.setLate_check("4");
+		pDTO.setReg_dt("5");
+		
+		pList.add(pDTO);
+		
+		System.out.println(pList);
+
+	}
+
+}

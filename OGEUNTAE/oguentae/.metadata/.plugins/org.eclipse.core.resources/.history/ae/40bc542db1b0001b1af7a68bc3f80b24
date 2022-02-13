@@ -1,0 +1,38 @@
+package poly.controller;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import poly.service.IEmpAttService;
+
+@Controller
+public class EmpAttController {
+
+	// 로거
+	Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name = "EmpAttService")
+	IEmpAttService empAttService;
+
+	
+	// 이미지 저장을 위한 매핑
+	@RequestMapping(value="imgStorage")
+	public String imgStorage(HttpServletRequest reuest, ModelMap model) {
+		log.info("img Storage start!!");
+		
+		String empno = reuest.getParameter("empno");
+		
+		model.addAttribute("empno", empno);
+		
+		log.info("img Storage end!!");
+		
+		return "/opencv/imgStorage";
+	}
+	
+	
+}

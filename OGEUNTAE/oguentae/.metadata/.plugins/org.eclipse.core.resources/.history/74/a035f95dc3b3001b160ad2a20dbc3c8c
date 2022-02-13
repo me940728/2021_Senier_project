@@ -1,0 +1,10 @@
+package poly.persistance.mapper;
+
+import config.Mapper;
+
+@Mapper("EmpAttMapper")
+public interface IEmpAttMapper {
+
+	List<EmpAttDTO> getEmpno();
+
+}

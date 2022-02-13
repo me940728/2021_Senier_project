@@ -1,0 +1,36 @@
+package poly.dto;
+
+
+public class EmpAttDTO {
+	
+	private String attno; // 풀근순서
+	private String empno; // 사원번호
+	private String ename; // 사원 이름
+	private String att_date; // 출근 시간
+	public String getAttno() {
+		return attno;
+	}
+	public void setAttno(String attno) {
+		this.attno = attno;
+	}
+	public String getEmpno() {
+		return empno;
+	}
+	public void setEmpno(String empno) {
+		this.empno = empno;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public String getAtt_date() {
+		return att_date;
+	}
+	public void setAtt_date(String att_date) {
+		this.att_date = att_date;
+	}
+	
+}
+

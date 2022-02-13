@@ -1,0 +1,14 @@
+package poly.service;
+
+import java.util.List;
+
+import poly.dto.AttAnalysDTO;
+
+public interface IAttAnalysService {
+	// 분석을 위한 직원 정보 불러오기
+	List<AttAnalysDTO> getAttInfo();
+	// 총 직원 수 가져오는 메서드
+	String getEmpCount();
+
+
+}

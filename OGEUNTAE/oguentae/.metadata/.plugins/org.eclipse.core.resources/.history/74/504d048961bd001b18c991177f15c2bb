@@ -1,0 +1,32 @@
+package poly.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class timeToMsecond {
+	
+	public static int timeToMilSecond(String checkTime) {
+		//날짜 객체 생성
+		Date today = new Date();
+		// 시간만 가져오기 위한 포맷팅 객체 생성
+		SimpleDateFormat date = new SimpleDateFormat("HHmm");
+		String [] tempStr = null; // 문자열 갈라서 임시 저장할 변수
+		// 현재 시간 포맷팅
+		String nowTime = date.format(today);
+		// 시와 분을 나눔
+		tempStr = nowTime.split("\\:");
+		int nowHour = Integer.parseInt(tempStr[0]);
+		
+		
+		
+		String[] resStr = checkTime.split("\\:", 2);
+		int hour = Integer.parseInt(resStr[0]);
+		int min = Integer.parseInt(resStr[1]);
+		int ms = (((hour * 60 * 60) + (min * 60)) * 1000);
+		
+		System.out.println("ms : " + ms);
+		
+		return ms;
+	}
+
+}

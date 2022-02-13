@@ -1,0 +1,11 @@
+package poly.persistance.mongo;
+
+import java.util.List;
+
+import poly.dto.AttAnalysDTO;
+import poly.dto.EmpAttDTO;
+
+public interface IEmpAttMongoMapper {
+	List<AttAnalysDTO> insertEmpATTforMongo(String) throws Exception;
+
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IEmpAttMapper">
+	<!-- 최종 목적지 마지막 호출 -->
+		<!-- 사원 번호 가져오는 쿼리 -->
+	<select id="getEmpno" parameterType="EmpAttDTO"
+		resultType="EmpAttDTO">
+		 SELECT 
+		 	EMPNO 
+		 FROM EMP
+		 
+	</select>
+	<!-- 출근 정보 삽입을 위한 쿼리 복합키로 날짜별 직원 리스트 뽑았음-->
+	<insert id = "insertEmpAttTime" parameterType="EmpAttDTO">
+		INSERT INTO ATT_LIST(
+			ATT_NO,
+			EMPNO,
+			ATT_DATE,
+			REG_DT
+		) VALUES(
+			(SELECT IFNULL(MAX(A.ATT_NO, 0) + 1 FROM
+			ATT_LIST A WHERE A.REG_DT = #{reg_dt}),
+			#{empno},
+			#{att_date},
+			NOW()
+		)
+	</insert>
+	<!-- 출근자 분석을 위한 쿼리 조인으로 가져옴 -->
+	<select id="getAttInfo" parameterType="AttAnalysDTO" 
+	resultType="AttAnalysDTO">
+	SELECT 
+	e.EMPNO,
+	e.ENAME,
+	e.sex,
+	e.ADDRS,
+	e.BDAY,
+	a.ATT_DATE
+	FROM
+	ogentae.EMP e, ogentae.ATT_LIST a
+	where e.EMPNO = a.EMPNO
+	</select>
+
+</mapper>
+
+

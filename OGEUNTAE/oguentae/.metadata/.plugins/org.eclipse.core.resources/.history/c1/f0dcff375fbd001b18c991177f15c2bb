@@ -1,0 +1,17 @@
+package poly.util;
+
+public class timeToMsecond {
+	
+	public int timeToMilSecond(String checkTime) {
+		String[] resStr = checkTime.split("\\:", 2);
+		int hour = Integer.parseInt(resStr[0]);
+		int min = Integer.parseInt(resStr[1]);
+		int ms = ((hour * 60 * 60) + (min * 60)) * 1000;
+		
+		System.out.println("time : " + time);
+		
+		
+		return time;
+	}
+
+}

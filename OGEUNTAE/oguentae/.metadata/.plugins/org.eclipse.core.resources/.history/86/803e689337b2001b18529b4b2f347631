@@ -1,0 +1,14 @@
+package poly.util;
+
+import org.json.simple.JSONObject;
+
+public class TestDum {
+
+	public static void main(String[] args) {
+		/*// CSV 생성 테스트용
+		 * CsvCreate cs = new CsvCreate(); cs.createCsv();
+		 */
+		
+	}
+
+}

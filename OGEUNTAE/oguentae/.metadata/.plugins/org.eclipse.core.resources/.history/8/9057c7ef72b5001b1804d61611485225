@@ -1,0 +1,16 @@
+package poly.persistance.mapper;
+
+import java.util.List;
+
+import config.Mapper;
+import poly.dto.EmpAttDTO;
+
+@Mapper("EmpAttMapper")
+public interface IEmpAttMapper {
+	
+	// empno를 가져오는 기능
+	List<EmpAttDTO> getEmpno();
+	// 출근 시간을 저장하는 메퍼
+	int insertEmpAttTime(EmpAttDTO pDTO);
+
+}

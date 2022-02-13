@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="poly.persistance.mapper.IUserMapper">
+
+	<!-- 유저 정보 찾기 이메일 -->
+	<select id="getFindUserInfo" resultType="UserDTO">
+		SELECT
+			AEMAIL
+		FROM 
+			ADMIN
+		WHERE 
+			AEMAIL=#{aemail}
+	</select>
+	<!-- 로그인 -->
+	<select id="getLoginInfo" resultType="UserDTO">
+		SELECT
+			ANO,
+			ANAME,
+			AEMAIL,
+			APW
+		FROM 
+			ADMIN
+		WHERE 
+			AEMAIL=#{aemail} AND APW=#{apw}
+	</select>
+
+	<!-- 회원 가입하기 (회원정보 등록하기) -->
+	<insert id="insertUserInfo" parameterType="UserDTO">
+		INSERT INTO ADMIN(
+			ANAME,
+			AEMAIL,
+			APW
+		)
+		VALUES(
+			#{aname},
+			#{aemail},
+			#{apw}
+		)
+	</insert>
+		<!-- 가입 후 정보 찾아오는 쿼리 -->
+	<select id="getUserInfo" resultType="UserDTO">
+		SELECT
+			ANO,
+			ANAME,
+			AEMAIL,
+			APW
+		FROM 
+			ADMIN
+		WHERE 
+			AEMAIL=#{aemail} AND APW=#{apw}
+	</select>
+
+	<!-- 이메일 매개로 회원가입 중복 체크 -->
+	<select id="getUserExists" parameterType="UserDTO"
+		resultType="UserDTO">
+		SELECT IF(COUNT(1), 'Y','N') AS EXISTS_YN 
+		FROM ADMIN 
+		WHERE
+		AEMAIL=#{aemail}
+	</select>
+	<!-- 유저 정보 찾아서 비밀번호 변경하기 -->
+	<update id="updateAdminInfo" parameterType="EmpDTO">
+	
+	</update>
+</mapper>

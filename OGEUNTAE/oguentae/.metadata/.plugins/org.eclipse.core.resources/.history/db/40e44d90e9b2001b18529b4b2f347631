@@ -1,0 +1,42 @@
+package poly.controller;
+/*
+ * API에서 받아온 정보 처리하는 로직
+ * */
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+
+import poly.service.IEmpAttService;
+import poly.util.UrlUtil;
+
+@Controller
+public class EmpAttController {
+
+	// 로거
+	Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name = "EmpAttService")
+	IEmpAttService empAttService;
+
+	
+	// 플라스크에서 넘겨준 정보를 받기 위한 컨트롤러
+	@RequestMapping(value="apiJsonPars")
+	public String imgStorage(HttpServletRequest reuest, ModelMap model) {
+		log.info("api Parsing Start!!!");
+		// url 파싱을 위한 객체 생성
+		UrlUtil uu = new UrlUtil();
+		String empno = reuest.getParameter("empno");
+		
+		model.addAttribute("empno", empno);
+		
+		log.info("img Storage end!!");
+		
+		return "/opencv/imgStorage";
+	}
+		
+}

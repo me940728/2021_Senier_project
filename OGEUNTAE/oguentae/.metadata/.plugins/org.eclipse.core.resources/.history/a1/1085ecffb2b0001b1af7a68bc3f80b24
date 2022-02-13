@@ -1,0 +1,56 @@
+package poly.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import poly.dto.EmpDTO;
+import poly.persistance.mapper.IEmpAttMapper;
+import poly.persistance.mapper.IEmpMapper;
+import poly.service.IEmpService;
+import poly.util.CmmUtil;
+
+@Service("EmpService")
+public class EmpAttService implements IEmpService {
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "EmpAttMapper")
+	IEmpAttMapper empAttMapper;
+
+	@Override
+	public int insertEmpInfo(EmpDTO pDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public EmpDTO getEmployExists(EmpDTO pDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<EmpDTO> getEmpList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public EmpDTO getEmpDetail(EmpDTO pDTO) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int UpdateEmpInfo(EmpDTO pDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	
+
+
+}

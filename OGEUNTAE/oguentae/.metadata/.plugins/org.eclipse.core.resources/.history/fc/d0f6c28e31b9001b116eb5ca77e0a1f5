@@ -1,0 +1,21 @@
+package poly.util;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateUtill {
+
+	public static String getDateTime(String fm) {
+	Date today = new Date();
+	System.out.println(today);
+	
+	SimpleDateFormat date = new SimpleDateFormat();
+	
+	return date.format(today);
+	}
+	// 오버로딩을 활용하여 함수 구현
+	public static String getDateTime() {
+		return getDateTime("yyyy.MM.dd");
+	}
+	
+}

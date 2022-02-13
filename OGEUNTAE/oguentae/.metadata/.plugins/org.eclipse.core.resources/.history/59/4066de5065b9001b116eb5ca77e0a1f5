@@ -1,0 +1,36 @@
+package poly.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import poly.dto.AttAnalysDTO;
+import poly.persistance.mapper.IEmpAttMapper;
+import poly.service.IAttAnalysService;
+
+@Service("AttAnalysService")
+public class AttAnalysService implements IAttAnalysService {
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "EmpAttMapper")
+	IEmpAttMapper empAttMapper;
+
+	@Override
+	public List<AttAnalysDTO> getAttInfo() {
+		return empAttMapper.getAttInfo();
+	}
+	// 직원 총 인원 구하는 메서드
+	@Override
+	public static String getEmpCount() {
+
+		return null;
+	}
+
+	
+	
+
+}

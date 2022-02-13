@@ -1,0 +1,44 @@
+package poly.util;
+
+// 정규표현식
+/*
+ * [] 안에 들어 간 특수문자는 or 처리한다.
+ * .이나 , 같은 특수문자는 역슬레쉬 \ 해줘야 인식 한다.
+ * \\s+ 는 공백을 의미
+ * */
+public class JsonParsProc {
+
+	// JSON 받아서 처리하기 쉽게 가공해주는 메서드
+	public static String[] JsonParsSplit(String str) {
+		// System.out.println("str : " + str);
+		// 정규식 사용해서 특수문자 처리 { or } or 공백 or " 제거
+		String replaceJson = str.replaceAll("[{}\\s+\"]", "");
+		// 키 : 값 형태로 된 문자열을 , 기준으로 다시 나워서 담음
+		String[] empTime = replaceJson.split("\\,");
+		// 리스트에 정보를 임시로 담을 문자열 배열
+		String[] pEmpTime = null;
+		
+		for (int i = 0; i < empTime.length; i++) {
+			System.out.println("empTime : " + empTime[i]);
+		}
+		
+		return empTime;
+	}
+	// 지각 유무 확인 메서드
+	public static String lateCheck(String pEmpTime) {
+		String time = pEmpTime;
+		String res;
+		String[] resTime = time.split("\\_"); // 세번째 인자에 시간 들어 있음
+		String temp = resTime[2]; // 세번째 인자 값 가져와서 임시 변수에 저장
+		resTime = null;
+		resTime = temp.split("\\:");
+		int num = Integer.parseInt(resTime[0]);
+		int late = 9;
+		if(num > late) {
+			res = "정상출석";
+		} else {
+			res = "지각";
+		}
+		return res;
+	}
+}

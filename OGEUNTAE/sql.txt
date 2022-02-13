@@ -1,0 +1,64 @@
+CREATE TABLE `ADMIN` (
+  `ANO` int(11) NOT NULL AUTO_INCREMENT,
+  `ANAME` varchar(20) COLLATE utf8_bin NOT NULL,
+  `AEMAIL` varchar(30) COLLATE utf8_bin NOT NULL,
+  `APW` varchar(120) COLLATE utf8_bin NOT NULL,
+  `REG_DT` datetime NOT NULL DEFAULT current_timestamp(),
+  `CHG_DT` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`ANO`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE `ATT_LIST` (
+  `REG_DT` varchar(50) COLLATE utf8_bin NOT NULL,
+  `ATTNO` int(11) NOT NULL,
+  `EMPNO` varchar(30) COLLATE utf8_bin NOT NULL,
+  `ATT_DATE` varchar(60) COLLATE utf8_bin NOT NULL,
+  `LATE_CHECK` varchar(45) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`REG_DT`,`ATTNO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
+CREATE TABLE `EMP` (
+  `EMPNO` varchar(30) NOT NULL,
+  `ANO` int(11) NOT NULL AUTO_INCREMENT,
+  `ENAME` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `BDAY` date DEFAULT NULL,
+  `SEX` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `EEMAIL` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `PRO_IMAGE` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `REG_DT` datetime NOT NULL DEFAULT current_timestamp(),
+  `IN_ADMIN` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `CHG_DT` datetime NOT NULL DEFAULT current_timestamp(),
+  `ATT_DATE` varchar(60) NOT NULL,
+  `UP_ADMIN` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `ADDRS` varchar(45) NOT NULL,
+  PRIMARY KEY (`ANO`,`EMPNO`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+
+
+<복합키 쿼리>
+		INSERT INTO ATT_LIST(
+			REG_DT,
+			ATTNO,
+			EMPNO,
+			ATT_DATE,
+			LATE_CHECK
+		) 
+		VALUES(
+			#{reg_dt},
+			(SELECT IFNULL(MAX(A.ATTNO),0)+1 FROM ATT_LIST A WHERE A.REG_DT = #{reg_dt}),
+			#{empno},
+			#{att_date},
+			#{late_check}
+		)
+
+<분석쿼리>
+SELECT  
+	cnt, COUNT(late_Check)
+FROM 
+	AttInfo_2021
+WHERE 
+	late_Check = '지각'
+GROUP BY cnt
+ORDER BY cnt asc;

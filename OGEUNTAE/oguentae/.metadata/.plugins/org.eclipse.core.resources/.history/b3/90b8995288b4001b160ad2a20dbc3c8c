@@ -1,0 +1,18 @@
+package poly.util;
+
+// 알고리즘 공부 열심히 하자... 이거 고민하는데 하루종일 했네
+// 코드 해석 ㄱㄱ
+public class JsonParsProc {
+	
+	public static String JsonParsSplit(String str) {
+		System.out.println("str : " + str);
+		if(str == null) {
+			str = "";
+		}
+		
+	
+		
+		
+		return "";
+	}
+}

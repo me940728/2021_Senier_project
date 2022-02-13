@@ -1,0 +1,202 @@
+<%@page import="poly.util.CmmUtil" %>
+<%@page import="java.util.List"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="poly.dto.AttAnalysDTO"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%
+    	String aname = CmmUtil.nvl((String)session.getAttribute("aname"));
+        String toDay = CmmUtil.nvl((String) request.getAttribute("toDay"));
+        List<AttAnalysDTO> rList = (List<AttAnalysDTO>) request.getAttribute("rList");
+        String empCount = (String) request.getAttribute("empCount");
+        int empAttCount = (Integer) request.getAttribute("empAttCount");
+
+    %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>OGENTAE_MAINPAGE</title>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<!-- 차트 링크 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    <!-- https://fonts.google.com/specimen/Roboto -->
+    <link rel="stylesheet" href="./resources/css/fontawesome.min.css">
+    <!-- https://fontawesome.com/ -->
+    <link rel="stylesheet" href="./resources/css/bootstrap.min.css">
+    <!-- https://getbootstrap.com/ -->
+    <link rel="stylesheet" href="./resources/css/templatemo-style.css">
+    <!-- 제이쿼리 플러그인 CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+</head>
+<body>
+       <div>
+		<!-- 오근태 탑 탑!!-->
+		<%@ include file="/WEB-INF/view/mainPage/oTop.jsp"%>
+		<!-- 탑 영역 끝-->
+	   </div>
+<body id="reportsPage">
+
+    <div class="" id="home">
+
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p class="text-white mt-5 mb-5">환영합니다. <b><%=aname %>님</b></p>
+                </div>
+            </div>
+            <!-- row -->
+            <div class="row tm-content-row">
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block">
+                        <h2 class="tm-block-title">2021년 지각자 분석</h2>
+                        <div class = "container"></div>
+                        <canvas id="myChart"></canvas>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block">
+                        <h2 class="tm-block-title">시스템 성능</h2>
+                        <canvas id="myChartTwo"></canvas>
+ 
+                    </div>
+                </div>       
+                
+                
+                <div class="col-12 tm-block-col">
+                    <div class="tm-bg-primary-dark tm-block tm-block-taller tm-block-scroll">
+                        <h2 class="tm-block-title">[<%=toDay %>] 출근리스트 
+                        	<br>(총원 / 출근인원수 : <%=empCount %>명 / <%=empAttCount %> 명)</h2>
+                        	<div> 
+                        	<a>CSV 만들기</a> 
+                        	</div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">사원번호</th>
+                                    <th scope="col">이름</th>
+                                    <th scope="col">성별</th>
+                                    <th scope="col">주소</th>
+                                    <th scope="col">생년월일</th>
+                                    <th scope="col">출근시간</th>
+                                    <th scope="col">비고</th>
+                                </tr>
+                            </thead>
+                            
+ <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ 여기 직원 리스트 뽑기 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+<%
+ for(AttAnalysDTO e : rList){
+%>
+                 <tbody>
+                                <tr>
+                                    <th scope="row"><b><%=e.getEmpno()%></b></th>
+                                    <td>
+                                        <!-- <div class="tm-status-circle pending">-->
+                                        <!-- <div class="tm-status-circle cancelled">> -->
+                                        </div><%=e.getEname() %>
+                                    </td>
+                                    <td><b><%=e.getSex() %></b></td>
+                                    <td><b><%=e.getAddrs() %></b></td>
+                                    <td><b><%=e.getBday() %></b></td>
+                                    <td><%=e.getAtt_date() %></td>
+                                    <td><%=e.getLate_Check() %></td>
+                                </tr>      
+ <%
+  }
+%>  
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="tm-footer row tm-mt-small">
+            <div class="col-12 font-weight-light">
+                <p class="text-center text-white mb-0 px-4 small">
+                    Copyright &copy; <b>2018</b> All rights reserved. 
+                    
+                    Design: <a rel="nofollow noopener" href="https://templatemo.com" class="tm-footer-link">Template Mo</a>
+                </p>
+            </div>
+        </footer>
+    </div>
+ <!-- 지각자 분석 차트-->
+<script th:inline="javascript">
+var ctx = document.getElementById('myChart').getContext('2d');
+var utilityChart = new Chart(ctx, {
+    // The type of chart we want to create
+    type: 'bar',
+ 
+    // The data for our dataset
+    data: {
+        labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월','8월','9월','10월','11월','12월'],
+        datasets: [{
+            label: '월 별 지각자 현황',
+            
+            backgroundColor: 'rgb(245, 166, 35)',
+            borderColor: 'rgb(255, 255, 255)',
+            data: [0, 10, 5, 2, 20, 30, 45, 12, 41, 23, 12, 32]
+        }]
+    },
+ 
+    // Configuration options
+    options: {
+        legend: {
+             labels: {
+                  fontColor: 'white' // label color
+                 }
+              },
+        scales: {
+            // y축
+            yAxes: [{
+                ticks: {
+                    beginAtZero:false,
+                    fontColor:'white' // y축 폰트 color
+                }
+             }],
+             // x축
+             xAxes: [{
+                ticks: {
+                    beginAtZero:false,
+                    fontColor:'white' // x축 폰트 color
+                }
+             }]
+        }
+    }
+});
+</script>
+    
+    <!-- 시스템 성능 차트 -->
+   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> 
+  	<script>
+        var ctx = document.getElementById('myChartTwo').getContext('2d');
+        var chart = new Chart(ctx, { // 챠트 종류를 선택 
+            type: 'line', // 챠트를 그릴 데이타 
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [{
+                    label: '지각자 수 추이',
+                    backgroundColor: 'transparent',
+                    borderColor: 'red', data: [0, 10, 5, 2, 20, 30, 45, 20, 10, 20, 11, 40]
+                }]
+            },
+            // 옵션 o
+            ptions: {
+    			legend: {
+    				labels: {
+    					fontColor: "red",
+    					fontSize: 18
+    				}
+    			}
+            
+            }
+        });
+    </script>       
+</body>
+</html>

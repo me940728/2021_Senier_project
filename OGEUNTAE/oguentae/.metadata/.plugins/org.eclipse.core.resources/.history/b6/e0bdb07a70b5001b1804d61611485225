@@ -1,0 +1,59 @@
+package poly.controller;
+import java.io.IOException;
+
+/*
+ * API에서 받아온 정보 몽고로 처리하는 로직
+ * */
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import poly.dto.AttAnalysDTO;
+import poly.service.IEmpAttService;
+
+@Controller
+public class EmpAttController {
+
+	// 로거
+	Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name = "EmpAttService")
+	IEmpAttService empAttService;
+
+	// 얼굴 검색 시작
+	// 여기서 API 서버에 접속하여 데이터를 받음
+	@RequestMapping(value="imgCheckTest")
+	public String imgCheckTest(HttpServletRequest request, HttpServletResponse response, ModelMap model) 
+			throws Exception, IOException {
+		log.info("img Check Process start!!"); 
+		
+		// API 서버 접속 용 URL
+		String url = "http://127.0.0.1:5001";
+		String api = "/imgCheck?&";
+		String empCheck = "empno=";
+		String addres = url + api + empCheck;
+		
+		// url 보내고 처리하느 메서드
+		int num = empAttService.empAttProc(addres);
+		
+		if(num == 0) {
+			log.info("Json Error!!!");
+		} else {
+			log.info("GOOD");
+		}
+		
+		return "/opencv/imgCheck";
+	}
+	// 출근 한 직원 조인 해서 보여주기 위한 기능
+	@RequestMapping(value="")
+	public String AttListProc() {
+		List<AttAnlysDTO> rList = ArrayList<>();
+		return "";
+	}
+		
+}

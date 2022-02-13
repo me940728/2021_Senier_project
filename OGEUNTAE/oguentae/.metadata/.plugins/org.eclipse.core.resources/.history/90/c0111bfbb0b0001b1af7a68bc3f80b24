@@ -1,0 +1,13 @@
+package poly.dto;
+
+
+public class EmpAttDTO {
+	
+	private String attno; // 풀근순서
+	private String empno; // 사원번호
+	private String ename; // 사원 이름
+	private String att_date; // 출근 시간
+
+	
+}
+

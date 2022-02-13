@@ -1,0 +1,61 @@
+package poly.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import poly.dto.AttAnalysDTO;
+import poly.persistance.mapper.IEmpAttMapper;
+import poly.persistance.mongo.IEmpAttMongoMapper;
+import poly.service.IAttAnalysService;
+
+@Service("AttAnalysService")
+public class AttAnalysService implements IAttAnalysService {
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "EmpAttMapper")
+	IEmpAttMapper empAttMapper;
+	
+	@Resource(name = "AttAnalysDTO")
+	IEmpAttMongoMapper empAttMongoMapper;
+
+	@Override
+	public List<AttAnalysDTO> getAttInfo() {
+		log.info("getAttInfo Start!");
+		return empAttMapper.getAttInfo();
+	}
+
+	@Override
+	public AttAnalysDTO getEmpCount() {
+		return empAttMapper.getEmpCount();
+	}
+	// 몽고에서 데이터 가져오기
+	@Override
+	public List<AttAnalysDTO> selectAttInfoForMongo() throws Exception {
+		
+		log.info(this.getClass().getName() + " selectAttInfoForMongo Start!!");
+		
+		String colNm = "AttInfoInsert_2021_05_22";
+		
+		List<AttAnalysDTO> rList = empAttMongoMapper.selectAttInfoForMongo(colNm);
+		
+		if(rList == null) {
+			rList = new ArrayList<AttAnalysDTO>();
+		}
+		
+		
+		log.info(this.getClass().getName() + " selectAttInfoForMongo End!!");
+		
+		return rList;
+	}
+
+
+	
+	
+
+}

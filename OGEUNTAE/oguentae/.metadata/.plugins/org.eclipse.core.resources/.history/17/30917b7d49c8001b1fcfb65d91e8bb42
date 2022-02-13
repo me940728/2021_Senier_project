@@ -1,0 +1,16 @@
+package poly.service;
+
+import java.io.IOException;
+import java.util.List;
+
+import poly.dto.EmpAttDTO;
+
+public interface IEmpAttService {
+	// 직원번호 가져오기
+	List<EmpAttDTO> getEmpno();
+	
+	int empAttProc(String addres, String checkTime, String ascTime) throws IOException, Exception;
+
+	int empAttProc(String addres, String checktime, String ascTime, String lateTime);
+
+}

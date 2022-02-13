@@ -1,0 +1,38 @@
+package poly.dto;
+
+public class EmpAttDTO {
+	// attno랑 reg_dt는 복합키
+	private String attno; // 출근순서(PK)
+	private String reg_dt; // 입력 시간(PK)
+	private String empno; // 사원번호
+	private String att_date; // 출근 시간
+	
+	public String getAttno() {
+		return attno;
+	}
+	public void setAttno(String attno) {
+		this.attno = attno;
+	}
+	public String getReg_dt() {
+		return reg_dt;
+	}
+	public void setReg_dt(String reg_dt) {
+		this.reg_dt = reg_dt;
+	}
+	public String getEmpno() {
+		return empno;
+	}
+	public void setEmpno(String empno) {
+		this.empno = empno;
+	}
+	public String getAtt_date() {
+		return att_date;
+	}
+	public void setAtt_date(String att_date) {
+		this.att_date = att_date;
+	}
+	
+
+	
+}
+

@@ -1,0 +1,83 @@
+package poly.persistance.mongo.impl;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.stereotype.Component;
+
+import com.mongodb.BasicDBObject;
+
+import poly.dto.AttAnalysDTO;
+import poly.dto.EmpAttDTO;
+import poly.persistance.mongo.IEmpAttMongoMapper;
+
+@Component("EmpAttMongoMapper")
+public class EmpAttMongoMapper implements IEmpAttMongoMapper{
+	
+	@Autowired
+	private MongoTemplate mongodb;
+	
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Override
+	public boolean createCollection(String colNm) throws Exception {
+		log.info(this.getClass().getName() + ".createCollection Start!!");
+		
+		boolean res = false;
+		
+		if(mongodb.collectionExists(colNm)) { // 만약 몽고에 해당 컬렉션이 있으면
+			mongodb.dropCollection(colNm); // 기존에 있던 컬렉션 삭제하기
+		}
+		// 컬렉션과 인덱스 생성(빠른 조회 성능을 위해 인덱스르 사용함)
+		mongodb.createCollection(colNm).createIndex(new BasicDBObject("reg_dt", 1).append("empno", 1), "attTime");
+		
+		res = true;
+		
+		log.info(this.getClass().getName() + ".createCollection END!!");
+		return res;
+	}
+	// 직원 정보 몽고에 삽입
+	@Override
+	public int insertEmpATTforMongo(List<EmpAttDTO> pList, String colNm) throws Exception {
+		log.info(this.getClass().getName() + ".insertRank Start!");
+
+		int res = 0;
+
+		if (pList == null) {
+			pList = new ArrayList<EmpAttDTO>();
+		}
+
+		Iterator<EmpAttDTO> it = pList.iterator();
+
+		while (it.hasNext()) {
+			EmpAttDTO pDTO = (EmpAttDTO) it.next();
+
+			if (pDTO == null) {
+				pDTO = new EmpAttDTO();
+			}
+
+			mongodb.insert(pDTO, colNm);
+
+		}
+
+		res = 1;
+
+		log.info(this.getClass().getName() + ".insertRank End!");
+		return res;
+	}
+	
+	// 메인 화면에 월 별 지각자 현황을 분석하기 위한 데이터 뽑아오기 
+	
+	@Override
+	public List<AttAnalysDTO> selectAttInfoForMongo(String colNm, String reg_dt, String late_check) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+
+}

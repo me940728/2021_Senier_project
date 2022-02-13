@@ -1,0 +1,48 @@
+package poly.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import poly.dto.AttAnalysDTO;
+import poly.service.IAttAnalysService;
+
+
+@Controller
+public class MainController {
+	
+	private Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name="AttAnalysService")
+	IAttAnalysService attAnalysService;
+	
+	// 메인 페이지 매핑
+	@RequestMapping(value="opencvIndex") // .do 입력
+	public String OpencvIndex() {
+		log.info(this.getClass());
+		// 출근 정보 불러오기 위한 리스트 구현
+		List<AttAnalysDTO> rList = null;
+		
+		for(AttAnalysDTO e : rList) {
+			System.out.println("######################");
+			System.out.println("empno: " + e.getEmpno());
+			System.out.println("ename: " + e.getEname());
+			System.out.println("sex: " + e.getSex());
+			System.out.println("addrs: " + e.getAddrs());
+			System.out.println("birthDay: " + e.getBday());
+			System.out.println("attDate: " + e.getAtt_date());
+			System.out.println("######################");
+		}
+		rList = null;
+		
+		return "/mainPage/index";
+	}
+
+	
+	
+			
+}

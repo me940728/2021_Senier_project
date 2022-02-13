@@ -1,0 +1,9 @@
+package poly.util;
+
+import org.json.simple.JSONObject;
+
+public class jsonUtil {
+	
+	JSONObject jsonObject = new JSONObject();
+
+}

@@ -1,0 +1,13 @@
+package poly.service.impl;
+
+import poly.service.IMongoTestService;
+@Service("MongoTestService")
+public class MongoTestService implements IMongoTestService{
+
+	@Override
+	public boolean createColection() throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}

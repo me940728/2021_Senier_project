@@ -1,0 +1,15 @@
+package poly.util;
+
+import org.apache.log4j.Logger;
+import org.springframework.data.mongodb.core.MongoTemplate;
+
+public class TestDum {
+	
+	Logger log = Logger.getLogger(this.getClass());
+
+	public static void main(String[] args) {
+		MongoTemplate mongodb;
+		mongodb
+	}
+
+}

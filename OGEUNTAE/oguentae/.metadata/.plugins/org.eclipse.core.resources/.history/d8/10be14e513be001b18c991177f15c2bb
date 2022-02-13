@@ -1,0 +1,35 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>imgCheckTime</title>
+<style>
+* {
+	font-size: 40px;
+	font-family: Consolas, sans-serif;
+}
+
+form {
+	margin: 0 auto;
+	width: 250px;
+}
+</style>
+</head>
+
+<body>
+	<h1>종료할 시간을 입력해 주세요.</h1>
+	<form action="/imgCheckTest.do">
+		<p>
+			<input type="time" id="time" name="time">
+		</p>
+		<p>
+			<input type="submit" value="완료">
+		</p>
+		<p>
+			<input type="button" value="취소">
+		</p>
+	</form>
+</body>
+</html>

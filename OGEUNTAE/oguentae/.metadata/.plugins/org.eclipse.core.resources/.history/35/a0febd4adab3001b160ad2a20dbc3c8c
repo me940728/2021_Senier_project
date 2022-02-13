@@ -1,0 +1,96 @@
+package poly.controller;
+import java.io.IOException;
+import java.util.List;
+
+/*
+ * API에서 받아온 정보 몽고로 처리하는 로직
+ * */
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.log4j.Logger;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import poly.dto.EmpAttDTO;
+import poly.service.IEmpAttService;
+import poly.util.UrlUtil;
+
+@Controller
+public class EmpAttController {
+
+	// 로거
+	Logger log = Logger.getLogger(this.getClass());
+	
+	@Resource(name = "EmpAttService")
+	IEmpAttService empAttService;
+
+	// 얼굴 검색 시작
+	// 여기서 API 서버에 접속하여 데이터를 받음
+	@RequestMapping(value="imgCheckTest")
+	public String imgCheckTest(HttpServletRequest request, HttpServletResponse response, ModelMap model) 
+			throws Exception, IOException {
+		log.info("img Check Process start!!"); 
+		
+		UrlUtil uu = new UrlUtil();
+		
+		// API 서버 접속 용 URL
+		String url = "http://127.0.0.1:5001";
+		String api = "/imgCheck?&";
+		String empChekc = "empno=";
+		String empno = "";
+		String res = "";
+		
+		empAttProc();
+		// 직원 정보 한번에 가져오기
+		List<EmpAttDTO> pList = empAttService.getEmpno();
+		log.info("::" + pList);
+		// 문자열 배열에 담음
+		for(EmpAttDTO e : pList) {
+			empno += e.getEmpno() + ",";
+		}
+		log.info("String empno " + empno);
+		
+		res = uu.urlReadforString(url + api + empChekc + empno);
+		log.info("res : " + res);
+		// 특수문자 처리 
+		res = res.replaceAll("\\{", "\\}");
+		log.info("replace res : " + res);
+		
+
+		
+		
+		uu = null;
+		
+		JSONParser parser = new JSONParser();
+		
+		JSONObject json = (JSONObject) parser.parse(res);
+		log.info("json :: " + json);
+		
+		String time = json.get("empno").toString();
+		
+		log.info(time);
+		/*
+		List<String> rList = (List<String>) json.get("2020110029");
+		if(rList == null) {
+			rList = new ArrayList<String>();
+		}
+		
+		Iterator<String> it = rList.iterator();
+		while(it.hasNext()) {
+			log.info("2222222");
+			String empAtt = (String) it.next();
+			log.info("empno : " + empAtt);
+		}
+		*/
+		
+		log.info("img Check Process end!!");
+		
+		return "/opencv/imgCheck";
+	}
+		
+}

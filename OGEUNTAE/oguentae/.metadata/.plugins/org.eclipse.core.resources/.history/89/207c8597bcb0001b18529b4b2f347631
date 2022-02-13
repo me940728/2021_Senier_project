@@ -1,0 +1,16 @@
+package poly.util;
+
+import java.util.List;
+
+import org.json.simple.JSONObject;
+
+import poly.dto.EmpDTO;
+
+public class jsonUtil {
+	// List 형식으로 받아서 JSON으로 리턴하는 메서드
+	public static String jsonMake(List<EmpDTO> rList) {
+	JSONObject jsonObject = new JSONObject();
+	
+	return "";
+	}
+}

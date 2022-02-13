@@ -1,0 +1,22 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>imgCheckTime</title>
+<style>
+      * {
+        font-size: 16px;
+        font-family: Consolas, sans-serif;
+      }
+    </style>
+</head>
+
+<body>
+ <form>
+      <p><input type="time"></p>
+      <p><input type="submit" value="Submit"></p>
+    </form>
+</body>
+</html>

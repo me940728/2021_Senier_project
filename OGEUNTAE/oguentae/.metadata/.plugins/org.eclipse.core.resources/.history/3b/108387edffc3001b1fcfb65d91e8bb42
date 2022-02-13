@@ -1,0 +1,22 @@
+package poly.util;
+
+import org.apache.log4j.Logger;
+
+public class TestDum {
+	
+	Logger log = Logger.getLogger(this.getClass());
+
+	public static void main(String[] args) {
+		String checkTime = "15:23";
+		int time = timeToMsecond.timeToMilSecond(checkTime);
+		System.out.println(time);
+		System.out.println("################test#############");
+		
+		String[] res = checkTime.split("\\:");
+		int hour;
+		int min;
+		
+		
+	}
+
+}

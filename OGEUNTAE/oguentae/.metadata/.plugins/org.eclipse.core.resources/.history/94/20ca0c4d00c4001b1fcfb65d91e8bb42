@@ -1,0 +1,16 @@
+package poly.util;
+
+import org.apache.log4j.Logger;
+
+public class TestDum {
+	
+	Logger log = Logger.getLogger(this.getClass());
+
+	public static void main(String[] args) {
+		String colFirstNm = "AttInfo_";
+		String years = DateUtill.getDateTime("yyyy_MM.dd");
+		String colNm = colFirstNm + years;
+		System.out.println(colNm);
+	}
+
+}

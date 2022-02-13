@@ -1,0 +1,8 @@
+package poly.persistance.mongo;
+
+import config.Mapper;
+
+@Mapper("EmpAttMongoMapper")
+public interface IEmpAttMongoMapper {
+
+}

@@ -1,0 +1,22 @@
+package poly.dto;
+// 출근자 리스트 불러와서 분석하기 위한 DTO
+
+public class AttAnalysDTO {
+	
+	private String empno; // 사원번호
+	private String ename; // 사원이음
+	private String sex; // 성별
+	private String addrs; // 주소
+	private String bday; // 생년월일
+	private String att_date; // 출근시간
+	private String reg_dt; // 데이터 입력 시간
+	private String late_Check; // 지각 or 정상출석으로 
+	//########아래는 몽고에서 값 가져오는데 사용
+	private String month; // 월별 집계
+	private String late_checkCount; // 카운트 결과
+	
+	
+	
+	
+}
+

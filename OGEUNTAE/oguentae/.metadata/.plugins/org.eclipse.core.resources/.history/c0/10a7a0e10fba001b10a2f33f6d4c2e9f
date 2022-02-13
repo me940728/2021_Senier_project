@@ -1,0 +1,46 @@
+package poly.util;
+
+import org.apache.log4j.Logger;
+
+public class TestDum {
+	Logger log = Logger.getLogger(this.getClass());
+
+	public static void main(String[] args) {
+		String str = "2021_05_20_15:27:12";
+		String res = JsonParsProc.lateCheck(str);
+		System.out.println(res);
+		/*
+		 * String date = DateUtill.getDateTime("yyyy-MM-dd"); System.out.println(date);
+		 */
+
+		/*
+		 * // CSV 생성 테스트용 CsvCreate cs = new CsvCreate(); cs.createCsv();
+		 */
+
+		/*
+		 * String res =
+		 * "{'2020110029': '2021_05_13_17:33:37','2020110030': '2021_05_14_17:33:37'}";
+		 * // [] 안에 정규식을 넣어야 함 안에 들어오는 문자들은 or를 의미함 // { or } or ' or \\s+ (공백) 을 제거해서
+		 * 리턴해라 res = res.replaceAll("[{}\\s+\']", ""); System.out.println(res); // 문자열
+		 * 처리 어떻게 할 까 고민.... String[] str = res.split("\\,"); String [] str2 = null;
+		 * List<String> pList = new ArrayList<>(); // empno에 맞는 시간대로 나눠줌 for (int i = 0;
+		 * i < str.length; i++) { str2 = str[i].split("\\:", 2); pList.add(str2[0]);
+		 * pList.add(str2[1]); System.out.println("str[" + i + "] " + str[i]); }
+		 * 
+		 * System.out.println("atr.split : " + str2[0]);
+		 * System.out.println("atr.split : " + str2[1]);
+		 * 
+		 * Iterator<String> it = pList.iterator();
+		 * 
+		 * while(it.hasNext()) { String st = it.next(); System.out.println("value : " +
+		 * st); }
+		 */
+		
+		/*
+		 * for (int j = 0; j < str2.length + 1; j++) { System.out.println(str2[j]);
+		 * System.out.println(str2[j + 1]); j += 1; }
+		 */
+
+	}
+
+}

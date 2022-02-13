@@ -1,0 +1,8 @@
+package poly.dto;
+
+public class AttMonthAnaDTO {
+	private String reg_dt;
+	private String late_CheckCount;
+	
+
+}

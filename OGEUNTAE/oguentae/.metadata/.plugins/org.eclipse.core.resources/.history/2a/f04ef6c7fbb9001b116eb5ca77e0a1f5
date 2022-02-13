@@ -1,0 +1,20 @@
+package poly.persistance.mongo.impl;
+
+import poly.persistance.mongo.IMongoTestMapper;
+
+public class MongoTestMapper implements IMongoTestMapper{
+
+	@Autowired
+	private MongoTemplate mongodb;
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	
+	@Override
+	public boolean createCollection(String colNm) throws Exception {	
+		
+		return false;
+	}
+	
+
+}

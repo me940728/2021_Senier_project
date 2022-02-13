@@ -1,0 +1,36 @@
+package poly.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
+
+import poly.dto.EmpAttDTO;
+import poly.persistance.mapper.IEmpAttMapper;
+import poly.service.IEmpAttService;
+
+@Service("EmpAttService")
+public class EmpAttService implements IEmpAttService {
+
+	private Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "EmpAttMapper")
+	IEmpAttMapper empAttMapper;
+	
+	// 직원 정보 가져오기
+	@Override
+	public List<EmpAttDTO> getEmpno() {
+		
+		return empAttMapper.getEmpno();
+	}
+	
+	@Override
+	public int empAttProc() {
+		
+		return 12;
+	}
+
+
+}

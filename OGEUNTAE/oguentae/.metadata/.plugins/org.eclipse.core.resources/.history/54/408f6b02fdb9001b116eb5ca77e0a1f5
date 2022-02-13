@@ -1,0 +1,9 @@
+package poly.controller;
+
+import org.springframework.stereotype.Controller;
+
+// 어노테이션 컨트롤러 선언해야지 spring에서 컨트롤러로 자동인식함 자바 서블릿 역할
+@Controller
+public class mongoTestContoller {
+
+}

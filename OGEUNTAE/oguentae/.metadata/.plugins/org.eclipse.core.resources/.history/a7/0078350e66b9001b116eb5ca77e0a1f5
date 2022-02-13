@@ -1,0 +1,59 @@
+package poly.controller;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import poly.dto.AttAnalysDTO;
+import poly.service.IAttAnalysService;
+import poly.service.impl.AttAnalysService;
+
+
+@Controller
+public class MainController {
+	
+	private Logger log = Logger.getLogger(this.getClass());
+	
+	// 대쉬보드에서 분석을 위한 리소스 연결
+	@Resource(name="AttAnalysService")
+	IAttAnalysService attAnalysService;
+	
+	// 메인 페이지 매핑
+	@RequestMapping(value="opencvIndex") // .do 입력
+	public String OpencvIndex(ModelMap model) {
+		log.info(this.getClass());
+		// 출근 정보 불러오기 위한 리스트 구현
+		List<AttAnalysDTO> rList = attAnalysService.getAttInfo();
+		// 총인원 / 출석 인원 출근자 리스트
+		int empCount = Integer.parseInt(attAnalysService.getEmpCount());
+		
+		for(AttAnalysDTO e : rList) {
+			log.info("#######################################");
+			log.info("empno: " + e.getEmpno());
+			log.info("ename: " + e.getEname());
+			log.info("sex: " + e.getSex());
+			log.info("addrs: " + e.getAddrs());
+			log.info("birthDay: " + e.getBday());
+			log.info("attDate: " + e.getAtt_date());
+			log.info("#######################################");
+		}
+		log.info("empCountAll : " + empCount);
+		
+		model.addAttribute("rList", rList);
+		model.addAttribute("empCount : ", empCount);
+		
+		rList = null;
+		
+		log.info(this.getClass());
+		return "/mainPage/index";
+	}
+
+	
+	
+			
+}

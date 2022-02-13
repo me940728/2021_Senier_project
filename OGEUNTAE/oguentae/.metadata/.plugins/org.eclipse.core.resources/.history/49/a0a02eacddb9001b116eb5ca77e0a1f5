@@ -1,0 +1,74 @@
+package poly.dto;
+// 출근자 리스트 불러와서 분석하기 위한 DTO
+
+public class AttAnalysDTO {
+	
+	private String empno; // 사원번호
+	private String ename; // 사원이음
+	private String sex; // 성별
+	private String addrs; // 주소
+	private String bday; // 생년월일
+	private String att_date; // 출근시간
+	private String reg_dt; // 데이터 입력 시간
+	private String lateChek; // 비고 추후 update 예정
+	private int cnt; // 카운트 결과
+	
+	public String getEmpno() {
+		return empno;
+	}
+	public void setEmpno(String empno) {
+		this.empno = empno;
+	}
+	public String getEname() {
+		return ename;
+	}
+	public void setEname(String ename) {
+		this.ename = ename;
+	}
+	public String getSex() {
+		return sex;
+	}
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+	public String getAddrs() {
+		return addrs;
+	}
+	public void setAddrs(String addrs) {
+		this.addrs = addrs;
+	}
+	public String getBday() {
+		return bday;
+	}
+	public void setBday(String bday) {
+		this.bday = bday;
+	}
+	public String getAtt_date() {
+		return att_date;
+	}
+	public void setAtt_date(String att_date) {
+		this.att_date = att_date;
+	}
+	public String getReg_dt() {
+		return reg_dt;
+	}
+	public void setReg_dt(String reg_dt) {
+		this.reg_dt = reg_dt;
+	}
+	public String getLateChek() {
+		return lateChek;
+	}
+	public void setLateChek(String lateChek) {
+		this.lateChek = lateChek;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	
+	
+	
+}
+

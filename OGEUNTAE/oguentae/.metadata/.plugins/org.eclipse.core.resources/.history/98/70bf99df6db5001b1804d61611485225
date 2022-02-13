@@ -1,0 +1,15 @@
+package poly.dto;
+
+public class AttAnalysDTO {
+	
+	private String empno; // 사원번호
+	private String ename; // 사원이음
+	private String sex; // 성별
+	private String addrs; // 주소
+	private String bday; // 생년월일
+	private String att_date; // 출근시간
+	private String lateChek; // 비고 추후 update 예정
+	
+	
+}
+

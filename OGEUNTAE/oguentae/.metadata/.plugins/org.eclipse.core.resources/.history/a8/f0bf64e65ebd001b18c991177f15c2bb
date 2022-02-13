@@ -1,0 +1,17 @@
+package poly.util;
+
+public class timeToMsecond {
+	
+	public static int timeToMilSecond(String checkTime) {
+		// 
+		int[] time = Integer.parseInt(checkTime.split("\\:", 2));
+
+
+		
+		System.out.println("time : " + time);
+		
+		
+		return 1;
+	}
+
+}

@@ -1,0 +1,14 @@
+package poly.persistance.mongo.impl;
+
+import poly.persistance.mongo.IMongoTestMapper;
+
+public class MongoTestMapper implements IMongoTestMapper{
+
+	@Override
+	public boolean createCollection(String colNm) throws Exception {	
+		
+		return false;
+	}
+	
+
+}

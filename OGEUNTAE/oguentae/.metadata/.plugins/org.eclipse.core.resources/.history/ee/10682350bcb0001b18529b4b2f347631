@@ -1,0 +1,16 @@
+package poly.util;
+
+import java.util.ArrayList;
+
+import org.json.simple.JSONObject;
+
+import poly.dto.EmpDTO;
+
+public class jsonUtil {
+	
+	public static String jsonMake(List<EmpDTO> rList) {
+	JSONObject jsonObject = new JSONObject();
+	
+	return "";
+	}
+}

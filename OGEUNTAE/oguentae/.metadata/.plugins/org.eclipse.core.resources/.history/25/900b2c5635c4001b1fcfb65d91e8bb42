@@ -1,0 +1,51 @@
+package poly.util;
+
+import java.util.List;
+
+import org.apache.log4j.Logger;
+
+import poly.dto.AttMonthAnaDTO;
+
+public class TestDum {
+	
+	Logger log = Logger.getLogger(this.getClass());
+
+	public static void main(String[] args) {
+		AttMonthAnaDTO pDTO = new AttMonthAnaDTO();
+		List<AttMonthAnaDTO> mongoList = null;
+		pDTO.setMonth("5");
+		pDTO.setLate_CheckCount("7");;
+		mongoList.add(pDTO);
+		pDTO = null;
+		pDTO.setMonth("6");
+		pDTO.setLate_CheckCount("10");
+		mongoList.add(pDTO);
+		pDTO = null;
+		 
+	    int jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec;
+	    
+		int[] value = new int[12];
+		
+	    for(AttMonthAnaDTO res : mongoList){
+	    	int month = Integer.parseInt(res.getMonth());
+
+	    	switch(month){
+	    		case 1: value[0] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 2: value[1] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 3: value[2] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 4: value[3] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 5: value[4] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 6: value[5] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 7: value[6] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 8: value[7] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 9: value[8] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 10: value[9] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 11: value[10] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    		case 12: value[11] = Integer.parseInt(res.getLate_CheckCount()); break;
+	    	}
+	    }
+		jan = value[0]; feb = value[1]; mar = value[2]; apr = value[3]; may  = value[4]; jun  = value[5];
+		jul = value[6]; aug  = value[7]; sep  = value[8]; oct  = value[9]; nov = value[10]; dec  = value[11];
+	}
+	
+}
